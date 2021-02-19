@@ -1,0 +1,6 @@
+Future Criminal Prediction Probability Generation
+Steps:
+*preprocess data
+*binary classifier to classify the outcome into 1 and 0.
+*Gausian Naive Bayes,SVC
+*if there is 1:1.5 class difference (imbalance data) use SMOTE( for example-if the outcome consists of ten 0 and forty 1 that means imbalance data)
