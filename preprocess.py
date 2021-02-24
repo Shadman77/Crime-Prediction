@@ -1,4 +1,5 @@
 import pandas as pd
+from modules import data_visualization
 
 
 def get_df_info(df):
@@ -172,6 +173,12 @@ def data_cleaning(df):
     df['Latitude'] = df['Latitude'].fillna(df['Latitude'].mean())
     df['Longitude'] = df['Longitude'].fillna(df['Longitude'].mean())
 
+    # Convert Perpetrator Age to int64 and replace 0 with mean
+    df['Perpetrator Age'] = df['Perpetrator Age'].replace(" ", "0")
+    df['Perpetrator Age'] = df['Perpetrator Age'].astype('int64')
+    df['Perpetrator Age'] = df['Perpetrator Age'].replace(
+        0, df['Perpetrator Age'].mean())
+
     return df
 
 
@@ -181,8 +188,8 @@ def group_primary_type(x):
             'LIQUOR LAW VIOLATION', 'NON-CRIMINAL', 'PUBLIC INDECENCY', 'CONCEALED CARRY LICENSE VIOLATION',
             'NON - CRIMINAL', 'NON-CRIMINAL (SUBJECT SPECIFIED)']
     one = ['BATTERY', 'THEFT', 'ROBBERY', 'MOTOR VEHICLE THEFT', 'ASSAULT', 'CRIMINAL DAMAGE', 'BURGLARY', 'STALKING',
-           'SEX OFFENSE', 'PROSTITUTION', 'ARSON']
-    two = ['CRIM SEXUAL ASSAULT', 'NARCOTICS', 'OTHER NARCOTIC VIOLATION', 'OFFENSE INVOLVING CHILDREN',
+           'PROSTITUTION', 'ARSON']
+    two = ['CRIM SEXUAL ASSAULT', 'SEX OFFENSE', 'NARCOTICS', 'OTHER NARCOTIC VIOLATION', 'OFFENSE INVOLVING CHILDREN',
            'KIDNAPPING', 'HOMICIDE', 'HUMAN TRAFFICKING']
 
     if x in zero:
@@ -192,7 +199,6 @@ def group_primary_type(x):
     if x in two:
         return 2
 
-def data_visualization()
 
 if __name__ == "__main__":
     df = pd.read_csv('data/sana_main_file2.csv')
@@ -203,10 +209,10 @@ if __name__ == "__main__":
     Dropping City and State cause they are not accurate
     Dropping Block since the number of block will make it hard to encode
     Dropping 'X Coordinate', 'Y Coordinate', 'Location' since Latitude, Logitude is already given
-
+    FBI Code is dropped to reduce the complexity
     '''
     df = df.drop(columns=['ID', 'Case Number', 'City', 'State',
-                          'Block', 'X Coordinate', 'Y Coordinate', 'Location'])
+                          'Block', 'X Coordinate', 'Y Coordinate', 'Location', 'FBI Code'])
     print(df.columns)
 
     # Change date format
@@ -228,5 +234,6 @@ if __name__ == "__main__":
     print(df.dtypes)
 
     # Data Visualization
-    
-
+    # data_visualization.distribution(df)
+    # data_visualization.count_plot(df)
+    data_visualization.count_plot_hue(df)
