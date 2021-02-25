@@ -21,9 +21,9 @@ def __gender(x):
     if x == 'Male':
         return 2
     elif x == 'Female':
-        return 1
-    else:
         return 0
+    else:
+        return 1
         
 
 def format_X(X):
