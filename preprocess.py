@@ -1,6 +1,8 @@
 import pandas as pd
+import datetime
 from modules import data_visualization, data_formatting
 from imblearn.over_sampling import SMOTE
+import sys
 
 
 def get_df_info(df):
@@ -151,17 +153,10 @@ def get_df_info(df):
 
 # get rid of the time and convert date to the format YYYYMMDD
 def convert_date_format(x):
-    x = x.strip()
-    x = x.split(" ")[0]
-    x = x.split("/")
-    for i in range(3):
-        x[i] = int(x[i])
-        if x[i] < 10:
-            x[i] = "0" + str(x[i])
-        else:
-            x[i] = str(x[i])
-    x = x[2] + x[0] + x[1]
-    return int(x)
+	x = x.strip()
+	x = x.split(" ")[0]
+	x = x.split("/")
+	return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).strftime("%s")
 
 
 def data_cleaning(df):

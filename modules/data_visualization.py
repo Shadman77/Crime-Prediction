@@ -7,6 +7,7 @@ matplotlib.use('TkAgg')
 def __distribution_util(df, col):
     sns.distplot(df[col])
     plt.ticklabel_format(style='plain')
+    # plt.xticks(rotation = 45)
     plt.show()
 
 
@@ -43,6 +44,7 @@ def count_plot_hue(df):
         __count_plot_hue_util(df, col)
 
 def count_plot_hue_format(df):
+    __count_plot_util(df, "Primary Type")
     cols = ["Year", "Arrest", "Domestic", "Crime Solved", "Perpetrator Sex"]
     for col in cols:
         __count_plot_hue_util(df, col)
