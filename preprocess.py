@@ -133,6 +133,7 @@ def get_df_info(df):
 			str(df['Perpetrator Age'].isna().sum()))
 	print("Number of unique values in Perpetrator Age is " +
 			str(len(df['Perpetrator Age'].unique())))
+	print("Number of rows where age is 0 is:", len(df[df['Perpetrator Age'] == 0]))
 	print()
 	print("Number of null values in Perpetrator Race is " +
 			str(df['Perpetrator Race'].isna().sum()))
@@ -162,22 +163,19 @@ def convert_date_format(x):
 def data_cleaning(df):
 
     # Drop rows
-    df = df.dropna(axis=0, subset=['Location Description'])  # 466
-    df = df.dropna(axis=0, subset=['District'])  # 1
-    df = df.dropna(axis=0, subset=['Ward'])  # 10
-    df = df.dropna(axis=0, subset=['Community Area'])  # 40
+	df = df.dropna(axis=0, subset=['Location Description'])  # 466
+	df = df.dropna(axis=0, subset=['District'])  # 1
+	df = df.dropna(axis=0, subset=['Ward'])  # 10
+	df = df.dropna(axis=0, subset=['Community Area'])  # 40
+	df = df.dropna(axis=0, subset=['Latitude']) #7351
+	df = df.dropna(axis=0, subset=['Longitude']) #7351
 
-    # Fill using mean value
-    df['Latitude'] = df['Latitude'].fillna(df['Latitude'].mean())
-    df['Longitude'] = df['Longitude'].fillna(df['Longitude'].mean())
+    # Convert Perpetrator Age to int64 and drop rows containing 0
+	df['Perpetrator Age'] = df['Perpetrator Age'].replace(" ", "0")
+	df['Perpetrator Age'] = df['Perpetrator Age'].astype('int64')
+	df = df[df['Perpetrator Age'] != 0] # 211079
 
-    # Convert Perpetrator Age to int64 and replace 0 with mean
-    df['Perpetrator Age'] = df['Perpetrator Age'].replace(" ", "0")
-    df['Perpetrator Age'] = df['Perpetrator Age'].astype('int64')
-    df['Perpetrator Age'] = df['Perpetrator Age'].replace(
-        0, df['Perpetrator Age'].mean())
-
-    return df
+	return df
 
 
 def group_primary_type(x):
