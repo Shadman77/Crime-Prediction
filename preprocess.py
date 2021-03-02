@@ -157,7 +157,8 @@ def convert_date_format(x):
 	x = x.strip()
 	x = x.split(" ")[0]
 	x = x.split("/")
-	return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).strftime("%s")
+	# return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).strftime("%s")
+	return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).timestamp()
 
 
 def data_cleaning(df):
