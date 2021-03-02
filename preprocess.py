@@ -157,8 +157,13 @@ def convert_date_format(x):
 	x = x.strip()
 	x = x.split(" ")[0]
 	x = x.split("/")
+<<<<<<< HEAD
 	# return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).strftime("%s")
 	return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).timestamp()
+=======
+	# return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0).strftime("%s") 
+	return datetime.datetime(int(x[2]), int(x[0]), int(x[1]), 0, 0) / 1000 #strftime("%s") is depreciate
+>>>>>>> dbfebd33c1b258d067a8a4ad0bc3188e6c797605
 
 
 def data_cleaning(df):
