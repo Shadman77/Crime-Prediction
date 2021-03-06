@@ -19,11 +19,9 @@ def __CrimeSolved(x):
 
 def __gender(x):
     if x == 'Male':
-        return 2
+        return 1
     elif x == 'Female':
         return 0
-    else:
-        return 1
         
 
 def format_X(X):
@@ -33,7 +31,7 @@ def format_X(X):
     X = pd.concat([X, pd.get_dummies(X["Location Description"], prefix='Loc_Dec')], axis=1)
     X = X.drop(columns = ["Location Description"])
 
-    X['Crime Solved'] = X['Crime Solved'].apply(__CrimeSolved)
+    # X['Crime Solved'] = X['Crime Solved'].apply(__CrimeSolved)
 
     X['Perpetrator Sex'] = X['Perpetrator Sex'].apply(__gender)
 

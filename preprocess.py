@@ -13,143 +13,247 @@ def get_df_info(df):
 	print(df.dtypes)
 	print("\nThe number of rows are")
 	print(len(df.index))
-	print("\nThe number of unique ids are")
-	print(len(df['ID'].unique()))
-	print("\nThe number of unique case numbers are")
-	print(len(df['Case Number'].unique()))
-	print("The number of null values in the column case numbers are")
-	print(df['Case Number'].isna().sum())
+
+	try:
+		print("\nThe number of unique ids are")
+		print(len(df['ID'].unique()))
+	except:
+		pass
+
+	try:
+		print("\nThe number of unique case numbers are")
+		print(len(df['Case Number'].unique()))
+	except:
+		pass
+
+	try:
+		print("The number of null values in the column case numbers are")
+		print(df['Case Number'].isna().sum())
+	except:
+		pass
 	# Since there are no missing values for case number and the number of unique case number
 	# is slightly lower than the number of rows,
 	# this means from some cases there are multiple entries
 
-	print("\nThe number of unique Primary Type are:")
-	print(len(df["Primary Type"].unique()))
-	print("The unique values are: ")
-	print(df["Primary Type"].unique())
-	print("The number of missing values are")
-	print(df['Primary Type'].isna().sum())
+	try:
+		print("\nThe number of unique Primary Type are:")
+		print(len(df["Primary Type"].unique()))
+		print("The unique values are: ")
+		print(df["Primary Type"].unique())
+		print("The number of missing values are")
+		print(df['Primary Type'].isna().sum())
+	except:
+		pass
 
-	print("\nThe number of unique Description are:")
-	print(len(df["Description"].unique()))
-	# print("The unique values are: ")
-	# print(df["Description"].unique())
-	# Too many
-	print("The number of missing values are")
-	print(df['Description'].isna().sum())
+	try:
+		print("\nThe number of unique Description are:")
+		print(len(df["Description"].unique()))
+		# print("The unique values are: ")
+		# print(df["Description"].unique())
+		# Too many
+		print("The number of missing values are")
+		print(df['Description'].isna().sum())
+	except:
+		pass
 
-	print("\nNumber of null values in Date is " + str(df['Date'].isna().sum()))
-	print()
-	# Illinois Uniform Crime Reporting code
-	print("Number of null values in IUCR is " + str(df['IUCR'].isna().sum()))
-	print("Number of unique values in IUCR is " +
-			str(len(df['IUCR'].unique())))
-	print()
-	print("Number of null values in FBI Code is " +
-			str(df['FBI Code'].isna().sum()))
-	print("Number of unique values in FBI Code is " +
-			str(len(df['FBI Code'].unique())))
-	print()
-	print("Number of null values in Block is " + str(df['Block'].isna().sum()))
-	print("Number of unique values in Block is " +
-			str(len(df['Block'].unique())))
-	print()
-	print("Number of null values in Location Description is " +
-			str(df['Location Description'].isna().sum()))  # Drop?
-	print("Number of unique values in Location Description is " +
-			str(len(df['Location Description'].unique())))
-	print()
-	print("Number of null values in Arrest is " +
-			str(df['Arrest'].isna().sum()))
-	print("Number of unique values in Arrest is " +
-			str(len(df['Arrest'].unique())))
-	print()
-	print("Number of null values in Domestic is " +
-			str(df['Domestic'].isna().sum()))
-	print("Number of unique values in Domestic is " +
-			str(len(df['Domestic'].unique())))
-	print()
-	print("Number of null values in Beat is " + str(df['Beat'].isna().sum()))
-	print("Number of unique values in Beat is " +
-			str(len(df['Beat'].unique())))
-	print()
-	print("Number of null values in District is " +
-			str(df['District'].isna().sum()))  # Drop?
-	print("Number of unique values in District is " +
-			str(len(df['District'].unique())))
-	print()
-	print("Number of null values in Ward is " +
-			str(df['Ward'].isna().sum()))  # Ward?
-	print("Number of unique values in Ward is " +
-			str(len(df['Ward'].unique())))
-	print()
-	print("Number of null values in Community Area is " +
-			str(df['Community Area'].isna().sum()))  # Community Area?
-	print("Number of unique values in Community Area is " +
-			str(len(df['Community Area'].unique())))
-	print()
-	print("Number of null values in Year is " + str(df['Year'].isna().sum()))
-	print("Number of unique values in Year is " +
-			str(len(df['Year'].unique())))
-	print()
-	print("Number of null values in Updated On is " +
-			str(df['Updated On'].isna().sum()))
-	print("Number of unique values in Updated On is " +
-			str(len(df['Updated On'].unique())))
-	print()
-	print("Number of null values in Latitude is " +
-			str(df['Latitude'].isna().sum()))  # Average?
-	print("Number of unique values in Latitude is " +
-			str(len(df['Latitude'].unique())))
-	print()
-	print("Number of null values in Longitude is " +
-			str(df['Longitude'].isna().sum()))  # Average?
-	print("Number of unique values in Longitude is " +
-			str(len(df['Longitude'].unique())))
-	print()
-	print("Number of null values in X Coordinate is " +
-			str(df['X Coordinate'].isna().sum()))  # Average?
-	print("Number of unique values in X Coordinate is " +
-			str(len(df['X Coordinate'].unique())))
-	print()
-	print("Number of null values in Y Coordinate is " +
-			str(df['Y Coordinate'].isna().sum()))  # Average?
-	print("Number of unique values in Y Coordinate is " +
-			str(len(df['Y Coordinate'].unique())))
-	print()
-	print("Number of null values in Crime Solved is " +
-			str(df['Crime Solved'].isna().sum()))
-	print("Number of unique values in Crime Solved is " +
-			str(len(df['Crime Solved'].unique())))
-	print("Unique values in Crime Solved are " + str(df['Crime Solved'].unique()))
-	print()
-	print("Number of null values in Perpetrator Sex is " +
-			str(df['Perpetrator Sex'].isna().sum()))
-	print("Number of unique values in Perpetrator Sex is " +
-			str(len(df['Perpetrator Sex'].unique())))
-	print("Unique values in Perpetrator Sex are " + str(df['Perpetrator Sex'].unique()))
-	print()
-	print("Number of null values in Perpetrator Age is " +
-			str(df['Perpetrator Age'].isna().sum()))
-	print("Number of unique values in Perpetrator Age is " +
-			str(len(df['Perpetrator Age'].unique())))
-	print("Number of rows where age is 0 is:", len(df[df['Perpetrator Age'] == 0]))
-	print()
-	print("Number of null values in Perpetrator Race is " +
-			str(df['Perpetrator Race'].isna().sum()))
-	print("Number of unique values in Perpetrator Race is " +
-			str(len(df['Perpetrator Race'].unique())))
-	print()
-	print("Number of null values in Perpetrator Ethnicity is " +
-			str(df['Perpetrator Ethnicity'].isna().sum()))
-	print("Number of unique values in Perpetrator Ethnicity is " +
-			str(len(df['Perpetrator Ethnicity'].unique())))
-	print()
-	print("Number of null values in Weapon is " +
-			str(df['Weapon'].isna().sum()))
-	print("Number of unique values in Weapon is " +
-			str(len(df['Weapon'].unique())))
-	print()
+	try:
+		print("\nNumber of null values in Date is " + str(df['Date'].isna().sum()))
+		print()
+		# Illinois Uniform Crime Reporting code
+		print("Number of null values in IUCR is " + str(df['IUCR'].isna().sum()))
+		print("Number of unique values in IUCR is " +
+				str(len(df['IUCR'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in FBI Code is " +
+				str(df['FBI Code'].isna().sum()))
+		print("Number of unique values in FBI Code is " +
+				str(len(df['FBI Code'].unique())))
+		print()
+	except:
+		pass
+	try:
+		print("Number of null values in Block is " + str(df['Block'].isna().sum()))
+		print("Number of unique values in Block is " +
+				str(len(df['Block'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Location Description is " +
+				str(df['Location Description'].isna().sum()))  # Drop?
+		print("Number of unique values in Location Description is " +
+				str(len(df['Location Description'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Arrest is " +
+				str(df['Arrest'].isna().sum()))
+		print("Number of unique values in Arrest is " +
+				str(len(df['Arrest'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Domestic is " +
+				str(df['Domestic'].isna().sum()))
+		print("Number of unique values in Domestic is " +
+				str(len(df['Domestic'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Beat is " + str(df['Beat'].isna().sum()))
+		print("Number of unique values in Beat is " +
+				str(len(df['Beat'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in District is " +
+				str(df['District'].isna().sum()))  # Drop?
+		print("Number of unique values in District is " +
+				str(len(df['District'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Ward is " +
+				str(df['Ward'].isna().sum()))  # Ward?
+		print("Number of unique values in Ward is " +
+				str(len(df['Ward'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Community Area is " +
+				str(df['Community Area'].isna().sum()))  # Community Area?
+		print("Number of unique values in Community Area is " +
+				str(len(df['Community Area'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Year is " + str(df['Year'].isna().sum()))
+		print("Number of unique values in Year is " +
+				str(len(df['Year'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Updated On is " +
+				str(df['Updated On'].isna().sum()))
+		print("Number of unique values in Updated On is " +
+				str(len(df['Updated On'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Latitude is " +
+				str(df['Latitude'].isna().sum()))  # Average?
+		print("Number of unique values in Latitude is " +
+				str(len(df['Latitude'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Longitude is " +
+				str(df['Longitude'].isna().sum()))  # Average?
+		print("Number of unique values in Longitude is " +
+				str(len(df['Longitude'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in X Coordinate is " +
+				str(df['X Coordinate'].isna().sum()))  # Average?
+		print("Number of unique values in X Coordinate is " +
+				str(len(df['X Coordinate'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Y Coordinate is " +
+				str(df['Y Coordinate'].isna().sum()))  # Average?
+		print("Number of unique values in Y Coordinate is " +
+				str(len(df['Y Coordinate'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Crime Solved is " +
+				str(df['Crime Solved'].isna().sum()))
+		print("Number of unique values in Crime Solved is " +
+				str(len(df['Crime Solved'].unique())))
+		print("Unique values in Crime Solved are " + str(df['Crime Solved'].unique()))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Perpetrator Sex is " +
+				str(df['Perpetrator Sex'].isna().sum()))
+		print("Number of unique values in Perpetrator Sex is " +
+				str(len(df['Perpetrator Sex'].unique())))
+		print("Unique values in Perpetrator Sex are " + str(df['Perpetrator Sex'].unique()))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Perpetrator Age is " +
+				str(df['Perpetrator Age'].isna().sum()))
+		print("Number of unique values in Perpetrator Age is " +
+				str(len(df['Perpetrator Age'].unique())))
+		print("Number of rows where age is 0 is:", len(df[df['Perpetrator Age'] == 0]))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Perpetrator Race is " +
+				str(df['Perpetrator Race'].isna().sum()))
+		print("Number of unique values in Perpetrator Race is " +
+				str(len(df['Perpetrator Race'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Perpetrator Ethnicity is " +
+				str(df['Perpetrator Ethnicity'].isna().sum()))
+		print("Number of unique values in Perpetrator Ethnicity is " +
+				str(len(df['Perpetrator Ethnicity'].unique())))
+		print()
+	except:
+		pass
+
+	try:
+		print("Number of null values in Weapon is " +
+				str(df['Weapon'].isna().sum()))
+		print("Number of unique values in Weapon is " +
+				str(len(df['Weapon'].unique())))
+		print()
+	except:
+		pass
 
 
 # get rid of the time and convert date to the format YYYYMMDD
@@ -183,18 +287,16 @@ def group_primary_type(x):
     zero = ['PUBLIC PEACE VIOLATION', 'WEAPONS VIOLATION', 'OTHER OFFENSE', 'DECEPTIVE PRACTICE',
             'CRIMINAL TRESPASS', 'OBSCENITY', 'INTERFERENCE WITH PUBLIC OFFICER', 'GAMBLING', 'INTIMIDATION',
             'LIQUOR LAW VIOLATION', 'NON-CRIMINAL', 'PUBLIC INDECENCY', 'CONCEALED CARRY LICENSE VIOLATION',
-            'NON - CRIMINAL', 'NON-CRIMINAL (SUBJECT SPECIFIED)']
-    one = ['BATTERY', 'THEFT', 'ROBBERY', 'MOTOR VEHICLE THEFT', 'ASSAULT', 'CRIMINAL DAMAGE', 'BURGLARY', 'STALKING',
-           'PROSTITUTION', 'ARSON']
-    two = ['CRIM SEXUAL ASSAULT', 'SEX OFFENSE', 'NARCOTICS', 'OTHER NARCOTIC VIOLATION', 'OFFENSE INVOLVING CHILDREN',
+            'NON - CRIMINAL', 'NON-CRIMINAL (SUBJECT SPECIFIED)', 'BATTERY', 
+			'THEFT', 'ROBBERY', 'MOTOR VEHICLE THEFT', 'ASSAULT', 'CRIMINAL DAMAGE', 'BURGLARY', 'STALKING',
+           	'PROSTITUTION', 'ARSON']
+    one = ['CRIM SEXUAL ASSAULT', 'SEX OFFENSE', 'NARCOTICS', 'OTHER NARCOTIC VIOLATION', 'OFFENSE INVOLVING CHILDREN',
            'KIDNAPPING', 'HOMICIDE', 'HUMAN TRAFFICKING']
 
     if x in zero:
         return 0
     if x in one:
         return 1
-    if x in two:
-        return 2
 
 
 if __name__ == "__main__":
@@ -232,15 +334,25 @@ if __name__ == "__main__":
 	print(df.dtypes)
 
 #     Data Visualization
-	data_visualization.distribution(df)
-#     data_visualization.count_plot(df)
-	data_visualization.count_plot_hue(df)
 #     data_visualization.lm_plot_hue(df)
+#     data_visualization.count_plot(df)
+	data_visualization.distribution(df)
+	data_visualization.count_plot_hue(df)
 
     # Dropping date columns since it turns out the year is the only one we need
 	df = df.drop(columns=["Date", "Updated On"])
 	print("\nThe unique columns after dropping Date & Updated On are")
 	print(df.columns)
+
+	# Considering only solved crimes, and dropping the Crime Solved column since it is no longer needed
+	print("Length before dropping unsolved crimes: ", len(df.index))
+	df = df[df['Crime Solved'] == 'Yes']
+	df = df.drop(columns = ['Crime Solved'])
+	print("Length after dropping unsolved crimes: ", len(df.index))
+	
+	get_df_info(df)
+	data_visualization.distribution(df)
+	data_visualization.count_plot_hue(df)
 
 	# Seperating X, y
 	X = df.drop(columns=["Primary Type"])
