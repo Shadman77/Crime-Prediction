@@ -25,13 +25,13 @@ if __name__ == "__main__":
     # Train a new model one to save it
     svc = SVC()
     svc.fit(X_train, y_train)
-    y_pred = gnb.predict(X_val)
+    y_pred = svc.predict(X_val)
     print("Number of mislabeled points out of a total %d points : %d" % (X_val.shape[0], (y_val != y_pred).sum()))
     print("Accuracy is ", accuracy_score(y_val, y_pred))
 
     # Save the model
     with open('data/svc.model', 'wb') as handle:
-        pickle.dump(gnb, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        pickle.dump(svc, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # To load the model
     # with open('filename.pickle', 'rb') as handle:
