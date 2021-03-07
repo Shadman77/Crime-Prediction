@@ -4,15 +4,15 @@ import numpy
 if __name__ == "__main__":
 
     # Load the saved model
-    with open('data/gnb.model', 'rb') as handle:
-        gnb = pickle.load(handle)
+    with open('data/svc.model', 'rb') as handle:
+        svc = pickle.load(handle)
 
     # Load example input
     with open('data/example_input.pd', 'rb') as handle:
         X = pickle.load(handle)
 
     # Get result using the example input
-    result = gnb.predict([X])
+    result = svc.predict([X])
     print("The prediction from 1 and 0 is", result[0])
 
     #Set value 
@@ -36,5 +36,5 @@ if __name__ == "__main__":
 
 
     # Get result using the custom input
-    result = gnb.predict([X])
+    result = svc.predict([X])
     print("The prediction from 1 and 0 is", result[0])
