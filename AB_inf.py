@@ -1,5 +1,4 @@
-import pickle
-import numpy
+import pickle, numpy, utils
 
 if __name__ == "__main__":
 
@@ -13,7 +12,7 @@ if __name__ == "__main__":
 
     # Get result using the example input
     result = ab.predict([X])
-    print("The prediction from 1 and 0 is", result[0])
+    print("The crime is:", utils.interpret_res(result[0]))
 
     #Set value 
     print()
@@ -37,4 +36,4 @@ if __name__ == "__main__":
 
     # Get result using the custom input
     result = ab.predict([X])
-    print("The prediction from 1 and 0 is", result[0])
+    print("The crime is:", utils.interpret_res(result[0]))

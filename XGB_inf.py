@@ -1,5 +1,4 @@
-import pickle
-import numpy
+import pickle, numpy, utils
 
 if __name__ == "__main__":
 
@@ -13,12 +12,12 @@ if __name__ == "__main__":
 
     # Get result using the example input
     result = xgb.predict(X)
-    print("The prediction from 1 and 0 is", result[0])
+    print("The crime is:", utils.interpret_res(result[0]))
 
     #Set value 
     print()
     X = X.reset_index(drop=True)
-    print(X)
+    # print(X)
     for column in X.iloc[0].keys():
         print(column, X.at[0, column], type(X.at[0, column]))
         value = input("Enter the value of " + column + ": ")
@@ -39,4 +38,4 @@ if __name__ == "__main__":
 
     # Get result using the custom input
     result = xgb.predict(X)
-    print("The prediction from 1 and 0 is", result[0])
+    print("The crime is:", utils.interpret_res(result[0]))
