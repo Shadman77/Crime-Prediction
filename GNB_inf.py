@@ -24,7 +24,7 @@ if __name__ == "__main__":
             X[column] = numpy.int64(int(value))
         elif isinstance(X[column], numpy.float64):
             X[column] = numpy.float64(float(value))
-        elif isinstance(X[column], numpy.int64):
+        elif isinstance(X[column], numpy.bool):
             if value.lower() in ['true', '1', 'yes']:
                 X[column] = numpy.bool(True)
             else:
