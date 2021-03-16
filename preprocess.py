@@ -337,7 +337,8 @@ if __name__ == "__main__":
 #     data_visualization.lm_plot_hue(df)
 #     data_visualization.count_plot(df)
 	data_visualization.distribution(df)
-	data_visualization.count_plot_hue(df)
+	data_visualization.count_plot_hue(df.copy(deep = True))
+
 
     # Dropping date columns since it turns out the year is the only one we need
 	df = df.drop(columns=["Date", "Updated On"])
@@ -352,7 +353,7 @@ if __name__ == "__main__":
 	
 	get_df_info(df)
 	data_visualization.distribution(df)
-	data_visualization.count_plot_hue(df)
+	data_visualization.count_plot_hue(df.copy(deep = True))
 
 	# Seperating X, y
 	X = df.drop(columns=["Primary Type"])
@@ -370,7 +371,7 @@ if __name__ == "__main__":
 	# Applying Smote
 	df = X
 	df["Primary Type"] = y
-	data_visualization.count_plot_hue_format(df)
+	data_visualization.count_plot_hue_format(df.copy(deep = True))
 
 	print("Length before applying smote: ", len(X.index))
 	
@@ -381,7 +382,7 @@ if __name__ == "__main__":
 	
 	df = X
 	df["Primary Type"] = y
-	data_visualization.count_plot_hue_format(df)
+	data_visualization.count_plot_hue_format(df.copy(deep = True))
 
 	# Save the dataset
 	df.to_csv('data/smote.csv', index=False)

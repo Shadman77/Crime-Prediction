@@ -43,7 +43,14 @@ def __count_plot_hue_util(df, col):
     plt.show()
 
 
+def primary_type_name(x):
+    if x == False or x == 0:
+        return "Non-Severe Crime"
+    else:
+        return "Severe Crime"
+
 def count_plot_hue(df):
+    df['Primary Type'] = df['Primary Type'].apply(primary_type_name)
     cols = ["Year", "Arrest", "Domestic", "Crime Solved", "Perpetrator Sex",
             "Perpetrator Race", "Perpetrator Ethnicity", "Weapon"]
     for col in cols:
@@ -52,7 +59,9 @@ def count_plot_hue(df):
         except:
             print("Not plotting ", col)
 
+
 def count_plot_hue_format(df):
+    df['Primary Type'] = df['Primary Type'].apply(primary_type_name)
     __count_plot_util(df, "Primary Type")
     cols = ["Year", "Arrest", "Domestic", "Perpetrator Sex"]
     for col in cols:
