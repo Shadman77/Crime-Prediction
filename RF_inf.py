@@ -24,11 +24,11 @@ if __name__ == "__main__":
             X[column] = numpy.int64(int(value))
         elif isinstance(X[column], numpy.float64):
             X[column] = numpy.float64(float(value))
-        elif isinstance(X[column], numpy.bool):
+        elif isinstance(X.at[0, column], numpy.bool_):
             if value.lower() in ['true', '1', 'yes']:
-                X[column] = numpy.bool(True)
+                X.at[0, column] = True
             else:
-                X[column] = numpy.bool(False)
+                X.at[0, column] = False
 
         print(column, X[column], type(X[column]))
         print()
