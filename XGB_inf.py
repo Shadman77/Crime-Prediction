@@ -1,4 +1,5 @@
 import pickle, numpy, utils
+from modules import options
 
 if __name__ == "__main__":
 
@@ -19,6 +20,18 @@ if __name__ == "__main__":
     X = X.reset_index(drop=True)
     # print(X)
     for column in X.iloc[0].keys():
+        # break
+        if "Weapon_" in column:
+            continue
+        if "Loc_Dec_" in column:
+            continue
+        if "Perp_Race_" in column:
+            continue
+        if "Perp_Ethnicity_" in column:
+            continue
+        if "Perpetrator Sex" == column:
+            continue
+
         print(column, X.at[0, column], type(X.at[0, column]))
         value = input("Enter the value of " + column + ": ")
 
@@ -34,7 +47,21 @@ if __name__ == "__main__":
 
         print(column, X.at[0, column], type(X.at[0, column]))
         print()
+    
+    # Weapon
+    X = options.select_weapon(X)
 
+    # Location
+    X = options.select_loc_desc(X)
+
+    # Sex
+    X = options.select_sex(X)
+
+    # Race
+    X = options.select_race(X)
+
+    # Ethnicity
+    X = options.select_ethnicity(X)
 
     # Get result using the custom input
     result = xgb.predict(X)
