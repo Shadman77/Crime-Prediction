@@ -98,7 +98,8 @@ def grid_search(params, Model, X_train, y_train, name=None):
 def get_best_params(name):
     # print("Getting best params")
     RESULTS_PATH = "grid_search_data/" + name + "_results.json"
-    KS = [10, 15, 20]
+    # KS = [10, 15, 20]
+    KS = [5]
     k_max = {}
     k_max_param = {}
 
