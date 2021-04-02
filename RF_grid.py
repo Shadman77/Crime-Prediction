@@ -3,8 +3,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn import model_selection
 import pandas as pd
-import pickle
+import pickle, json
 from modules import grid_search
+from modules.train_best import train_save
 
 
 def perform_grid_search():
@@ -29,7 +30,7 @@ def perform_grid_search():
 
 if __name__ == "__main__":
     opt = int(input(
-        "Enter 1 to perform grid search and 2 to get best parameters from results: "))
+        "Enter 1 to perform grid search and 2 to train with best parameter(s) from results: "))
 
     if opt == 1:
         perform_grid_search()
@@ -40,3 +41,7 @@ if __name__ == "__main__":
             print("k = ", k)
             print("Result = ", best_results[k])
             print("Parameter = ", best_params[k])
+            param = json.loads(best_params[k])
+            train_save(RandomForestClassifier, param, "rf_best")
+
+
