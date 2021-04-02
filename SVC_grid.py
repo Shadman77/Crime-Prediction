@@ -22,12 +22,12 @@ def perform_grid_search():
     }
 
     grid_search.grid_search(
-        params, GaussianNB, X_train, y_train, "SVC")
+        params, SVC, X_train, y_train, "SVC")
 
 
 if __name__ == "__main__":
     opt = int(input(
-        "Enter 1 to perform grid search and 2 to get best parameters from results: "))
+        "Enter 1 to perform grid search and 2 to train with best parameter(s) from results: "))
 
     if opt == 1:
         perform_grid_search()
@@ -38,3 +38,5 @@ if __name__ == "__main__":
             print("k = ", k)
             print("Result = ", best_results[k])
             print("Parameter = ", best_params[k])
+            param = json.loads(best_params[k])
+            train_save(SVC, param, "svc_best")
