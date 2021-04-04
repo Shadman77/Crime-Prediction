@@ -40,4 +40,4 @@ if __name__ == "__main__":
             print("Result = ", best_results[k])
             print("Parameter = ", best_params[k])
             param = json.loads(best_params[k])
-            train_save(AdaBoostClassifier, param, "ab_best")
+            train_save(AdaBoostClassifier, param, "ab_best", "Ada Boost")
