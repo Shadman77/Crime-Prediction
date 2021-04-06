@@ -1,4 +1,4 @@
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 import pandas as pd
@@ -49,4 +49,6 @@ def get_res(best_k, model_name, title):
     y_pred = model.predict(X_val)
     print("Number of mislabeled points out of a total %d points : %d" % (X_val.shape[0], (y_val != y_pred).sum()))
     print("Accuracy is ", accuracy_score(y_val, y_pred))
+    print("F-Score is ", f1_score(y_val, y_pred))
+    print("Recall Score is ", recall_score(y_val, y_pred))
     show_conf_matrix(y_val, y_pred, title)
