@@ -42,6 +42,6 @@ if __name__ == "__main__":
             print("Result = ", best_results[k])
             print("Parameter = ", best_params[k])
             param = json.loads(best_params[k])
-            train_save(RandomForestClassifier, param, "rf_best", "Random Forest")
+            train_save(RandomForestClassifier, param, "rf_best")
 
 
