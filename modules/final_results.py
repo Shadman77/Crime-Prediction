@@ -42,7 +42,7 @@ def get_res(best_k, model_name, title):
 
     # Load the model
     path = 'data/' + str(model_name) + '.model'
-    with open('data/rf.model', 'rb') as handle:
+    with open(path, 'rb') as handle:
         model = pickle.load(handle)
 
     # Get Accuracy
