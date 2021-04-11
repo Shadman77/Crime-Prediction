@@ -1,4 +1,4 @@
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score, roc_curve, auc, roc_auc_score
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 import pandas as pd
@@ -52,3 +52,45 @@ def get_res(best_k, model_name, title):
     print("F-Score is ", f1_score(y_val, y_pred))
     print("Recall Score is ", recall_score(y_val, y_pred))
     show_conf_matrix(y_val, y_pred, title)
+
+
+    # Get predicted and true probabilities
+    y_score = model.predict_proba(X_val)
+    # print(y_score)
+    # print(type(y_score))
+    y_test = []
+    for y in y_val:
+        if int(y) == 1:
+            y_test.append([0.0, 1.0])
+        else:
+            y_test.append([1.0, 0.0])
+    y_test = np.array(y_test)
+
+
+    # Compute ROC curve and ROC area for each class
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    for i in range(2):
+        fpr[i], tpr[i], _ = roc_curve(y_test[:, i], y_score[:, i])
+        roc_auc[i] = auc(fpr[i], tpr[i])
+
+    # Compute micro-average ROC curve and ROC area
+    fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_score.ravel())
+    roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+
+    # Plot ROC for positive
+    class_names = ["Negative", "Positive"]
+    for i in range(2): 
+        plt.figure()
+        lw = 2
+        plt.plot(fpr[i], tpr[i], color='darkorange',
+                lw=lw, label='ROC curve (area = %0.2f)' % roc_auc[i])
+        plt.plot([0, 1], [0, 1], color='navy', lw=lw, linestyle='--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False ' + class_names[i] + ' Rate')
+        plt.ylabel('True ' + class_names[i] + ' Rate')
+        plt.title('Receiver operating characteristic for ' + title)
+        plt.legend(loc="lower right")
+        plt.show()
