@@ -1,4 +1,4 @@
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score, roc_curve, auc, roc_auc_score
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, f1_score, recall_score, roc_curve, auc, roc_auc_score, precision_score
 from sklearn.model_selection import train_test_split
 import seaborn as sns
 import pandas as pd
@@ -29,7 +29,7 @@ def show_conf_matrix(y_val, y_pred, title):
     ax.set(ylabel="Actual Label", xlabel="Predicted Label") 
     plt.show()
 
-def get_res(best_k, model_name, title):
+def get_res(best_k, model_name, title, scores_n_timings_only = False):
     # Load the dataset
     df = pd.read_csv('data/smote.csv')
 
@@ -46,11 +46,24 @@ def get_res(best_k, model_name, title):
         model = pickle.load(handle)
 
     # Get Accuracy
+    start_time = time.time()
     y_pred = model.predict(X_val)
+    end_time = time.time()
+
     print("Number of mislabeled points out of a total %d points : %d" % (X_val.shape[0], (y_val != y_pred).sum()))
-    print("Accuracy is ", accuracy_score(y_val, y_pred))
-    print("F-Score is ", f1_score(y_val, y_pred))
-    print("Recall Score is ", recall_score(y_val, y_pred))
+    ac_score = accuracy_score(y_val, y_pred)
+    print("Accuracy is ", ac_score)
+    f1_sc = f1_score(y_val, y_pred)
+    print("F-Score is ", f1_sc)
+    rec_score = recall_score(y_val, y_pred)
+    print("Recall Score is ", rec_score)
+    pre_sc = precision_score(y_val, y_pred)
+    print("Precision Score is ", pre_sc)
+    if (scores_n_timings_only):
+        inference_time = (end_time - start_time) / len(y_pred)
+        return ac_score, f1_sc, rec_score, pre_sc, inference_time
+    
+    # Conf matrix
     show_conf_matrix(y_val, y_pred, title)
 
 
