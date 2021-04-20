@@ -4,7 +4,7 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import pickle
+import pickle, time
 
 def show_conf_matrix(y_val, y_pred, title):
     # Generating classification report
@@ -29,13 +29,19 @@ def show_conf_matrix(y_val, y_pred, title):
     ax.set(ylabel="Actual Label", xlabel="Predicted Label") 
     plt.show()
 
-def get_res(best_k, model_name, title, scores_n_timings_only = False):
+def get_res(best_k, model_name, scores_n_timings_only = False, title=''):
     # Load the dataset
     df = pd.read_csv('data/smote.csv')
 
-    # Seperate X and y
+    # Seperate X and y "IUCR"
     X = df.drop(columns=["Primary Type"])
     y = df["Primary Type"]
+
+    # Drop IUCR if it exists
+    try:
+        X = X.drop(columns=["IUCR"])
+    except:
+        pass
     
     # Train test split using the value of k as ratio ref
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=1/float(best_k))
