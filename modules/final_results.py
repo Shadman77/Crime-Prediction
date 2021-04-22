@@ -30,21 +30,15 @@ def show_conf_matrix(y_val, y_pred, title):
     plt.show()
 
 def get_res(best_k, model_name, scores_n_timings_only = False, title=''):
-    # Load the dataset
-    df = pd.read_csv('data/smote.csv')
-
-    # Seperate X and y "IUCR"
-    X = df.drop(columns=["Primary Type"])
-    y = df["Primary Type"]
-
-    # Drop IUCR if it exists
-    try:
-        X = X.drop(columns=["IUCR"])
-    except:
-        pass
+    # Load the data
+    path = "data/train_test.data"
+    with open(path, 'rb') as handle:
+        data = pickle.load(handle)
     
-    # Train test split using the value of k as ratio ref
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=1/float(best_k))
+    X_train = data['X_train']
+    X_val = data['X_val']
+    y_train = data['y_train']
+    y_val = data['y_val']
 
     # Load the model
     path = 'data/' + str(model_name) + '.model'
