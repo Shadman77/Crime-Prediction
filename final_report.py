@@ -6,4 +6,4 @@ if __name__ == "__main__":
     model_name = input("Enter the name of the model: ")
     title = input("Enter the title: ")
 
-    final_results.get_res(best_k, model_name, title)
+    final_results.get_res(best_k=best_k, model_name=model_name, title=title)
