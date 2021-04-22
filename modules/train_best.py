@@ -52,3 +52,27 @@ def train_save(Model, param, name):
     path = "data/" + str(name) + ".model"
     with open(path, 'wb') as handle:
         pickle.dump(model, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+def train_save_without_k_fold(Model, param, name):
+    # Load the data
+    path = "data/train_test.data"
+    with open(path, 'rb') as handle:
+        data = pickle.load(handle)
+    
+    X_train = data['X_train']
+    X_val = data['X_val']
+    y_train = data['y_train']
+    y_val = data['y_val']
+
+    # Train the final model
+    model = Model(**param)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_val)
+    print("Number of mislabeled points out of a total %d points : %d" %
+          (X_val.shape[0], (y_val != y_pred).sum()))
+    print("Accuracy is ", accuracy_score(y_val, y_pred))
+
+    # Save the model
+    path = "data/" + str(name) + ".model"
+    with open(path, 'wb') as handle:
+        pickle.dump(model, handle, protocol=pickle.HIGHEST_PROTOCOL)
