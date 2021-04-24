@@ -4,6 +4,7 @@
 
 from modules import final_results
 from matplotlib import pyplot as plt
+import numpy as np
 
 accuracy = []
 f_score = []
@@ -23,6 +24,7 @@ for model in models:
 
 # print(models, accuracy, f_score, recall_score, precision_score, inference_times)
 
+xticks = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
 # Accuracy
 plt.style.use('ggplot')
@@ -30,6 +32,7 @@ plt.barh(y=classifiers, width=accuracy)
 plt.title('Model comparison according to accuracy')
 plt.ylabel('Classifiers')
 plt.xlabel('Accuracy')
+plt.xticks(xticks)
 plt.show()
 
 # Precision
@@ -38,6 +41,7 @@ plt.barh(y=classifiers, width=precision_score)
 plt.title('Model comparison according to precision')
 plt.ylabel('Classifiers')
 plt.xlabel('Precision')
+plt.xticks(xticks)
 plt.show()
 
 # Recall
@@ -46,6 +50,7 @@ plt.barh(y=classifiers, width=recall_score)
 plt.title('Model comparison according to recall score')
 plt.ylabel('Classifiers')
 plt.xlabel('Recall')
+plt.xticks(xticks)
 plt.show()
 
 # F-measure
@@ -54,6 +59,7 @@ plt.barh(y=classifiers, width=recall_score)
 plt.title('Model comparison according to f-measure score')
 plt.ylabel('Classifiers')
 plt.xlabel('F-measure')
+plt.xticks(xticks)
 plt.show()
 
 # Inference time
